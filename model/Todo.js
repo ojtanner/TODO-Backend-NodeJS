@@ -1,9 +1,11 @@
 function Todo(title, description, deadline) {
-    title
-    description,
-    deadline,
-    this.id = Math.random() * 10 + 1,
-    this.creationDate = new Date()
+    this.verifyCreationArgs(title, description, deadline);
+
+    this.title = title;
+    this.description = description;
+    this.deadline = deadline;
+    this.id = Math.random() * 10 + 1;
+    this.creationDate = new Date();
 }
 
 function isValidTitle(title) {
@@ -33,15 +35,11 @@ function isValidDeadline(deadline) {
 }
 
 Todo.prototype.verifyCreationArgs = function(title, description, deadline) {
-    if(!isValidTitle(title)) return false;
+    if(!isValidTitle(title)) throw new Error('Invalid Title');
 
-    if(!isValidDescription(description)) return false;
+    if(!isValidDescription(description)) throw new Error('Invalid Description');
 
-    if(!isValidDeadline(deadline)) return false;
-
-    this.title = title;
-    this.description = description;
-    this.deadline = deadline;
+    if(!isValidDeadline(deadline)) throw new Error('Invalid Deadline');
 }
 
 module.exports = Todo;
