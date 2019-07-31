@@ -1,0 +1,25 @@
+{
+  "name": "TODO-Backend-NodeJS",
+  "version": "1.0.0",
+  "description": "### What does a TODO consist of?",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ojtanner/TODO-Backend-NodeJS.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ojtanner/TODO-Backend-NodeJS/issues"
+  },
+  "homepage": "https://github.com/ojtanner/TODO-Backend-NodeJS#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "nodemon": "^1.19.1"
+  }
+}
