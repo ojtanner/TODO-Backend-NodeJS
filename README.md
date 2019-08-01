@@ -15,6 +15,8 @@
 * Create TODO's
 * Modify TODO's
 * Delete TODO's
+* Register USER
+* Login USER
 
 ### What is the REST-Spec?
 
