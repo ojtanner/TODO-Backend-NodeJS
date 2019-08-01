@@ -4,7 +4,7 @@ function Todo(title, description, deadline) {
     this.title = title;
     this.description = description;
     this.deadline = deadline;
-    this.id = Math.random() * 10 + 1;
+    this.id = Math.floor(Math.random() * 10 + 1);
     this.creationDate = new Date();
 }
 
