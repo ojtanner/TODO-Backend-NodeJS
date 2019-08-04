@@ -11,6 +11,7 @@ registerRouter.post('/', async (req, resp) => {
     }
 
     const user = new User(req.body);
+
     try {
         await user.save();
         return resp.status(200).send(user);
