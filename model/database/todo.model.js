@@ -1,9 +1,10 @@
 const mongoose = require('mongoose');
+const ObjectId = mongoose.Schema.Types.ObjectId;
 const validatorjs = require('validator');
 
 const todoSchema = new mongoose.Schema({
     owner: {
-        type: String,
+        type: ObjectId,
         required: true
     },
     title: {
