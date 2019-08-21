@@ -1,19 +1,11 @@
 const postRouter = require('express').Router()
-const jwt = require('jsonwebtoken');
 const ObjectId = require('mongoose').Types.ObjectId;
 const { Todo } = require('../model/database/mongoose');
+const verifyAuthentification = require('../middleware/verifyAuthentication');
 
-postRouter.post('/', async (req, res) => {
-
-    //Refactor as middleware
-    const authHeader = req.headers.authorization;
-    if(!authHeader) res.send(400).send('No auth header');
-    const [authType, authToken] = authHeader.split(" ");
-    if(!authType || authType !== 'Bearer' || !authToken) return res.status(400).send('Invalid auth header');
-    const decodedToken = jwt.verify(authToken, process.env.SECRET_OR_KEY);
-
+postRouter.post('/', verifyAuthentification, async (req, res) => {
     const todo = new Todo({
-        owner: new ObjectId(decodedToken.id), 
+        owner: new ObjectId(req.token.id), 
         title: req.body.title,
         description: req.body.description
     });
