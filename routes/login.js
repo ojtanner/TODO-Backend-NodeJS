@@ -1,6 +1,6 @@
 const loginRouter = require('express').Router();
 const jwt = require('jsonwebtoken');
-const { User } = require('../model/database/mongoose');
+const { Todo } = require('../mongoose/mongoose');
 
 loginRouter.post('/', async (req, resp) => {
 

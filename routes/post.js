@@ -1,6 +1,6 @@
 const postRouter = require('express').Router()
 const ObjectId = require('mongoose').Types.ObjectId;
-const { Todo } = require('../model/database/mongoose');
+const { Todo } = require('../mongoose/mongoose');
 const verifyAuthentification = require('../middleware/verifyAuthentication');
 
 postRouter.post('/', verifyAuthentification, async (req, res) => {

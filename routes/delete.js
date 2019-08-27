@@ -1,6 +1,6 @@
 const deleteRouter = require('express').Router();
 const ObjectId = require('mongoose').Types.ObjectId;
-const { Todo } = require('../model/database/mongoose');
+const { Todo } = require('../mongoose/mongoose');
 const verifyAuthentification = require('../middleware/verifyAuthentication');
 
 deleteRouter.delete('/', verifyAuthentification, async (req, resp) => {

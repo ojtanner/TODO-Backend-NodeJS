@@ -1,5 +1,5 @@
 const registerRouter = require('express').Router();
-const { User } = require('../model/database/mongoose');
+const { Todo } = require('../mongoose/mongoose');
 
 registerRouter.post('/', async (req, resp) => {
 

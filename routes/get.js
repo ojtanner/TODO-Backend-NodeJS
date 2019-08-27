@@ -1,6 +1,6 @@
 const getRouter = require('express').Router();
 const ObjectId = require('mongoose').Types.ObjectId;
-const { Todo } = require('../model/database/mongoose');
+const { Todo } = require('../mongoose/mongoose');
 const verifyAuthentification = require('../middleware/verifyAuthentication');
 
 getRouter.get('/', verifyAuthentification, async (req, res) => {
