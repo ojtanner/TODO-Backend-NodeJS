@@ -1,22 +1,27 @@
 const registerRouter = require('express').Router();
-const { Todo } = require('../mongoose/mongoose');
+const { User } = require('../mongoose/mongoose');
+const ProblemDetails = require('../utils/ProblemDetails');
 
 registerRouter.post('/', async (req, resp) => {
 
     try {
         const emailInUse = await User.findOne({ email: req.body.email });
-        if(emailInUse) return resp.status(401).send('Email in use');
-    } catch (error) {
-        return resp.status(400).send(error);
-    }
+        if(emailInUse) {
+            const problem = new ProblemDetails('email_unavailable');
+            return resp.status(problem.status)
+                .contentType('application/problem+json')
+                .send(problem);
+        }
 
-    const user = new User(req.body);
-
-    try {
+        const user = new User(req.body);
         await user.save();
         return resp.status(200).send(user);
     } catch (error) {
-        return resp.status(401).send(error);
+        console.log(error)
+        const problem = new ProblemDetails('internal_error');
+        return resp.status(problem.status)
+            .contentType('application/problem+json')
+            .send(problem);
     }
 });
 
