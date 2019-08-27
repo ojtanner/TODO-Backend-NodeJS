@@ -10,6 +10,12 @@ const problemTypeEnum = {
         TYPE: '/problems/internal_error',
         TITLE:'Internal Error',
         STATUS: 500
+    },
+    EMAIL_UNAVAILABLE: {
+        KEY: 'email_unavailable',
+        TYPE: '/problems/email_unavailable',
+        TITLE:'Email Unavailable',
+        STATUS: 400
     }
 }
 
@@ -25,6 +31,12 @@ const ProblemDetails = function ( problemType ) {
             this.type = problemTypeEnum.INTERNAL_ERROR.TYPE,
             this.title = problemTypeEnum.INTERNAL_ERROR.TITLE,
             this.status = problemTypeEnum.INTERNAL_ERROR.STATUS
+            break;
+
+        case problemTypeEnum.EMAIL_UNAVAILABLE.KEY:
+            this.type = problemTypeEnum.EMAIL_UNAVAILABLE.TYPE,
+            this.title = problemTypeEnum.EMAIL_UNAVAILABLE.TITLE,
+            this.status = problemTypeEnum.EMAIL_UNAVAILABLE.STATUS
             break;
 
         default:
