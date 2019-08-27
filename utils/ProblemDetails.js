@@ -19,6 +19,7 @@ const problemTypeEnum = {
     }
 }
 
+//See RFC-7807 for reference
 const ProblemDetails = function ( problemType ) {
     switch (problemType) {
         case problemTypeEnum.INVALID_CREDENTIALS.KEY:
