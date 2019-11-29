@@ -1,14 +1,14 @@
 const loginRouter = require('express').Router();
 const jwt = require('jsonwebtoken');
 const { User } = require('../mongoose/mongoose');
-const ProblemDetails = require('../utils/ProblemDetails');
+const { ProblemDetails, problemTypeEnum } = require('../utils/ProblemDetails');
 
 loginRouter.post('/', async (req, resp) => {
 
     try {
         const user = await User.findOne({ email: req.body.email });
         if(!user) {
-            const problem = new ProblemDetails('invalid_credentials');
+            const problem = new ProblemDetails( problemTypeEnum.INVALID_CREDENTIALS );
             return resp.status(problem.status)
                 .contentType('application/problem+json')
                 .send(problem);
@@ -16,7 +16,7 @@ loginRouter.post('/', async (req, resp) => {
 
         const passwordIsValid = await user.validatePassword(req.body.password);
         if(!passwordIsValid) {
-            const problem = new ProblemDetails('invalid_credentials');
+            const problem = new ProblemDetails( problemTypeEnum.INVALID_CREDENTIALS );
             return resp.status(problem.status)
                 .contentType('application/problem+json')
                 .send(problem);
@@ -26,7 +26,7 @@ loginRouter.post('/', async (req, resp) => {
         return resp.status(200).send(token);
     } catch (error) {
         console.log(error)
-        const problem = new ProblemDetails('internal_error');
+        const problem = new ProblemDetails( problemTypeEnum.INTERNAL_ERROR );
         return resp.status(problem.status)
             .contentType('application/problem+json')
             .send(problem);

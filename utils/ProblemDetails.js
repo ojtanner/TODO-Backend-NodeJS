@@ -1,48 +1,37 @@
+const problemTypes = {
+    'invalid_credentials': {
+        type: '/problems/invalid_credentials',
+        title: 'Invalid Credentials',
+        status: 400
+    },
+    'internal_error': {
+        type: '/problems/internal_error',
+        title:'Internal Error',
+        status: 500
+    },
+    'email_unavailable': {
+        type: '/problems/email_unavailable',
+        title:'Email Unavailable',
+        status: 400
+    },
+    'invalid_registration_data': {
+        type: '/problems/invalid_registration_data',
+        title: 'Invalid Registration Data',
+        status: 400
+  }
+}
+
 const problemTypeEnum = {
-    INVALID_CREDENTIALS: {
-        KEY: 'invalid_credentials',
-        TYPE: '/problems/invalid_credentials',
-        TITLE: 'Invalid Credentials',
-        STATUS: 400
-    },
-    INTERNAL_ERROR: {
-        KEY: 'internal_error',
-        TYPE: '/problems/internal_error',
-        TITLE:'Internal Error',
-        STATUS: 500
-    },
-    EMAIL_UNAVAILABLE: {
-        KEY: 'email_unavailable',
-        TYPE: '/problems/email_unavailable',
-        TITLE:'Email Unavailable',
-        STATUS: 400
-    }
+  INVALID_CREDENTIALS: 'invalid_credentials',
+  INTERNAL_ERROR: 'internal_error',
+  EMAIL_UNAVAILABLE: 'email_unavailable',
+  INVALID_REGISTRATION_DATA: 'invalid_registration_data'
 }
 
 //See RFC-7807 for reference
 const ProblemDetails = function ( problemType ) {
-    switch (problemType) {
-        case problemTypeEnum.INVALID_CREDENTIALS.KEY:
-            this.type = problemTypeEnum.INVALID_CREDENTIALS.TYPE,
-            this.title = problemTypeEnum.INVALID_CREDENTIALS.TITLE,
-            this.status = problemTypeEnum.INVALID_CREDENTIALS.STATUS
-            break;
-    
-        case problemTypeEnum.INTERNAL_ERROR.KEY:
-            this.type = problemTypeEnum.INTERNAL_ERROR.TYPE,
-            this.title = problemTypeEnum.INTERNAL_ERROR.TITLE,
-            this.status = problemTypeEnum.INTERNAL_ERROR.STATUS
-            break;
-
-        case problemTypeEnum.EMAIL_UNAVAILABLE.KEY:
-            this.type = problemTypeEnum.EMAIL_UNAVAILABLE.TYPE,
-            this.title = problemTypeEnum.EMAIL_UNAVAILABLE.TITLE,
-            this.status = problemTypeEnum.EMAIL_UNAVAILABLE.STATUS
-            break;
-
-        default:
-            break;
-    }
+  return problemTypes[problemType];
 };
 
-module.exports = ProblemDetails;
+module.exports.ProblemDetails = ProblemDetails;
+module.exports.problemTypeEnum = problemTypeEnum;

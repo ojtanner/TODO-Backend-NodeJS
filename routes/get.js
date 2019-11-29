@@ -1,7 +1,7 @@
 const getRouter = require('express').Router();
 const ObjectId = require('mongoose').Types.ObjectId;
 const { Todo } = require('../mongoose/mongoose');
-const verifyAuthentification = require('../middleware/verifyAuthentication');
+const { verifyAuthentification, problemTypeEnum } = require('../middleware/verifyAuthentication');
 
 getRouter.get('/', verifyAuthentification, async (req, res) => {
     try {
